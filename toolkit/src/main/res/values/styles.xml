@@ -1,0 +1,42 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light" />
+
+    <!--自定义Dialog类型的Activity主题-->
+    <style name="ActivityDialogTheme" parent="@style/Theme.AppCompat.Dialog">
+        <item name="windowNoTitle">true</item>
+        <!--阴影-->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!--是否在悬浮Activity之上-->
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFrame">@null</item>
+        <!--透明背景-->
+        <item name="background">@android:color/transparent</item>
+        <!--窗口背景透明-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--背景不变暗-->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!--点击Dialog之外位置Dialog不消失-->
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <!--设置动画，在这里使用让它继承系统的Animation.Dialog-->
+        <item name="android:windowAnimationStyle">@style/CustomerDialogAnimation</item>
+
+    </style>
+
+    <style name="CustomerDialogAnimation" parent="@android:style/Animation.Translucent">
+        <!--        <item name="android:windowEnterAnimation"></item>-->
+        <!--        <item name="android:windowExitAnimation"></item>-->
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+</resources>

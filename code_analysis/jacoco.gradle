@@ -1,0 +1,50 @@
+apply plugin: 'jacoco'
+
+jacoco {
+    toolVersion = "0.7.9" // 代码覆盖率库jacoco版本号
+}
+
+android {
+    buildTypes {
+        debug{
+            testCoverageEnabled true // 实现代码覆盖率
+            minifyEnabled false // 获取代码覆盖率需要设为false
+        }
+    }
+}
+
+// 移至app/build.gradle统一执行。
+//task jacocoTestReport(type:JacocoReport){//,dependsOn:"connectedAndroidTest"
+//    group = "Reporting"
+//    description = "Generate Jacoco coverage reports after running tests."
+//
+//    println( "buildDir: $buildDir")
+//    println( "rootDir: $project.rootDir")
+//
+//    classDirectories = fileTree(
+//            dir : "$buildDir/intermediates/javac/debug/compileDebugJavaWithJavac/classes",
+//            excludes : [
+//                    '**/*Test.class',
+//                    '**/R.class',
+//                    '**/R$*.class',
+//                    '**/*$ViewInjector*.*',
+//                    '**/BuildConfig.*',
+//                    '**/Manifest*.*'
+//            ]
+//    )
+//    def coverageSourceDirs = ['src/main/java']
+//    additionalSourceDirs = files(coverageSourceDirs)
+//    sourceDirectories = files(coverageSourceDirs)
+//    additionalClassDirs = files(coverageSourceDirs)
+//
+//    sourceDirectories.each {file ->
+//        println("sourceDirectories: $file.path")
+//    }
+//
+//    executionData = files("${project.rootDir}/code_analysis/coverage_main.ec")
+//
+//    reports{
+//        xml.enabled = true
+//        html.enabled = true
+//    }
+//}

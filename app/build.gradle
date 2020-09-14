@@ -1,0 +1,112 @@
+//if (isModule.toBoolean()) {
+//    apply plugin: 'com.android.application'
+//} else {
+//    apply plugin: 'com.android.library'
+//}
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion allCompileSdkVersion
+
+    signingConfigs {
+        debug {
+            keyAlias 'key0'
+            keyPassword 'android'
+            storeFile file(project.property('default.sign.path'))
+            storePassword 'android'
+        }
+        release {
+            keyAlias 'key0'
+            keyPassword 'android'
+            storeFile file(project.property('default.sign.path'))
+            storePassword 'android'
+        }
+    }
+    defaultConfig {
+        if (isModule.toBoolean()) {
+            applicationId "com.mine.dearbear"
+        }
+
+        minSdkVersion allMinSdkVersion
+        targetSdkVersion allTargetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+        ndk {
+            abiFilters 'armeabi-v7a'
+        }
+    }
+
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/jni/Android.mk'
+        }
+    }
+    buildTypes {
+        debug {
+            multiDexEnabled true
+            minifyEnabled false // 获取代码覆盖率需要设为false
+            signingConfig signingConfigs.debug
+        }
+        release {
+            //打开混淆
+            minifyEnabled true
+            //打开资源压缩
+//            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    sourceSets {
+        main {
+//            jniLibs.srcDirs = ['src/main/jniLibs']
+//            默认加载src/main/jniLibs下so
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api deps.androidx.appcompat
+
+    implementation deps.androidx.constraintlayout
+    implementation deps.androidx.legacy
+    implementation deps.material
+    // RxAndroid
+    implementation deps.rx2_android
+    // RxJava2
+    implementation deps.rxjava2
+    // xstream:xml
+    //    implementation 'com.thoughtworks.xstream:xstream:1.4.10'
+    implementation deps.gson
+    // Retrofit + RxJava
+    implementation deps.retrofit2.retrofit
+    implementation deps.retrofit2.adapter
+    implementation deps.retrofit2.gson
+//    implementation project(':baselib')
+    implementation project(':toolkit')
+
+    testImplementation deps.junit
+    androidTestImplementation deps.androidx.android_junit
+    androidTestImplementation deps.androidx.espresso_espresso_core
+}
+
+project.assemble.doLast {
+    println("project.assemble.doLast haha")
+}
+
+project.afterEvaluate {
+    println('test')
+}

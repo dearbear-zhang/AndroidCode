@@ -1,0 +1,99 @@
+project.afterEvaluate {
+    def apphostProject = 'apphost'
+    def appProject = 'app'
+    def abiTypeArmeabi = 'armeabi'
+    def abiTypeArmeabi_v7a = 'armeabi-v7a'
+    def soLibName1 = 'libapploadertool.so'
+    def soLibName2 = 'libsafeCheckTools.so'
+    def buildType_release_usb = 'release_usb'
+    def buildType_release_wifi = 'release_wifi'
+    def buildType_release = 'release'
+    def soMergeInfoTaskForRelease = 'transformNativeLibsWithMergeJniLibsForRelease'
+    def soMergeInfoTaskForRelease_usb = 'transformNativeLibsWithMergeJniLibsForRelease_usb'
+    def soMergeInfoTaskForRelease_wifi = 'transformNativeLibsWithMergeJniLibsForRelease_wifi'
+
+    project.tasks.each { task ->
+        if (task.project.name.equals(apphostProject) && task.name.contains(soMergeInfoTaskForRelease_usb)) {
+            // 构建 apphost:assembleRelease* 的时候添加ndk加固
+            printMsg("task: ${task.path} 结尾对 ${abiTypeArmeabi}和${abiTypeArmeabi_v7a}下的${soLibName1}进行so加固")
+            task.doLast {
+                ndkSoEncryptFun(apphostProject, buildType_release_usb, abiTypeArmeabi, soLibName1)
+                ndkSoEncryptFun(apphostProject, buildType_release_usb, abiTypeArmeabi_v7a, soLibName1)
+            }
+        } else if (task.project.name.equals(apphostProject) && task.name.contains(soMergeInfoTaskForRelease_wifi)) {
+            // 构建 apphost:assembleRelease* 的时候添加ndk加固
+            printMsg("task: ${task.path} 结尾对 ${abiTypeArmeabi}和${abiTypeArmeabi_v7a}下的${soLibName1}进行so加固")
+            task.doLast {
+                ndkSoEncryptFun(apphostProject, buildType_release_wifi, abiTypeArmeabi, soLibName1)
+                ndkSoEncryptFun(apphostProject, buildType_release_wifi, abiTypeArmeabi_v7a, soLibName1)
+            }
+        } else if (task.project.name.equals(appProject) && task.name.contains(soMergeInfoTaskForRelease)) {
+            // 构建 app:assembleRelease* 的时候添加ndk加固
+            printMsg("task: ${task.path} 结尾对 ${abiTypeArmeabi}和${abiTypeArmeabi_v7a}下的${soLibName2}进行so加固")
+            task.doLast {
+                ndkSoEncryptFun(appProject, buildType_release, abiTypeArmeabi, soLibName2)
+                ndkSoEncryptFun(appProject, buildType_release, abiTypeArmeabi_v7a, soLibName2)
+            }
+        }
+    }
+}
+
+def ndkSoEncryptFun(moduleName, buildType, abiType, soName) {
+    def upxPath = "${project.rootDir}\\tools\\upx_meiya"
+    def releaseUsblibPath = "${project.rootDir}\\${moduleName}\\build\\intermediates\\transforms\\mergeJniLibs\\${buildType}\\0\\lib\\${abiType}\\"
+    def libNameOri = soName
+    def libNameEncrypted = "encrypted_" + soName
+    printMsg(upxPath)
+    def lib_armeabi_path = "${releaseUsblibPath}${libNameOri}"
+    if (!new File(lib_armeabi_path).exists()) {
+        printMsg("error: soPath:${lib_armeabi_path} not exists")
+        return
+    }
+    def lib_encrypt_armeabi_path = "${releaseUsblibPath}${libNameEncrypted}"
+    project.exec {
+        workingDir upxPath
+        delFile(new File(lib_encrypt_armeabi_path))
+        def myCommond0 = [
+                'cmd',
+                '/c',
+                'upx.exe',
+                '--android-shlib',
+                '-o',
+                lib_encrypt_armeabi_path,
+                lib_armeabi_path
+        ]
+        printMsg("执行so加固命令: ${myCommond0}")
+        commandLine myCommond0
+    }
+    // 删除源so,将加固后的so重命名为源so
+    if (delFile(new File(lib_armeabi_path))) {
+        if (!renameFile(new File(lib_encrypt_armeabi_path), libNameOri)) {
+            printMsg("error, rename file: ${libNameOri} failed")
+        }
+    }
+}
+
+def printMsg(msg) {
+    println("[ndkSoEncryptFun] ${msg}")
+}
+
+def delFile(File file) {
+    if (file.exists()) {
+        println("del: ${file.name}")
+        return file.delete()
+    } else {
+        return true
+    }
+}
+
+def renameFile(File file, String name) {
+    if (file.exists()) {
+        return file.renameTo(new File(file.getParent(), name))
+    } else {
+        printMsg("error: file: ${file.path} not exists")
+    }
+}
+
+
+
+

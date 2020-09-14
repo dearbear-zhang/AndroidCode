@@ -1,0 +1,52 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: 'versions.gradle'
+buildscript {
+    ext {
+        allCompileSdkVersion = 29
+        allMinSdkVersion = 24
+        allTargetSdkVersion = 28
+    }
+
+    repositories {
+        google()
+        jcenter()
+//        maven {
+//            url "https://plugins.gradle.org/m2/"
+//        }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+//subprojects { subProject ->
+//    plugins.withId('com.android.application') {
+//        subProject.apply from: file("${project.rootDir}/code_analysis/findbugs.gradle")
+//        subProject.apply from: file("${project.rootDir}/code_analysis/lint.gradle")
+//        subProject.apply from: file("${project.rootDir}/code_analysis/jacoco.gradle")
+//    }
+//
+//    plugins.withId('com.android.library') {https://github.com/mqzhangw/JIMU.git
+//        subProject.apply from: file("${project.rootDir}/code_analysis/findbugs.gradle")
+//        subProject.apply from: file("${project.rootDir}/code_analysis/lint.gradle")
+//        subProject.apply from: file("${project.rootDir}/code_analysis/jacoco.gradle")
+//    }
+//
+//    plugins.withId('java') {
+//        subProject.apply from: file("${project.rootDir}/code_analysis/findbugs-java.gradle")
+//    }
+//}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

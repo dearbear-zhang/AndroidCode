@@ -1,0 +1,15 @@
+findbus:
+  unstableTotalAll: 999
+  unstableTotalHigh: 999
+  unstableTotalNormal: 999
+  unstableTotalLow: 999
+lint:
+  unstableTotalAll: 1500
+  unstableTotalHigh: 1500
+  unstableTotalNormal: 1500
+  unstableTotalLow: 1500
+p3c:
+  unstableTotalAll: 999
+  unstableTotalHigh: 999
+  unstableTotalNormal: 999
+  unstableTotalLow: 999

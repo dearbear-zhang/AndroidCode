@@ -1,0 +1,29 @@
+apply plugin: "findbugs"
+
+task findbugs(type: FindBugs,dependsOn:'assembleDebug') {
+    ignoreFailures = true
+    // The analysis effort level.
+    // The value specified should be one of min, default, or max.
+    // Higher levels increase precision and find more bugs at the expense of running time and memory consumption.
+    effort = "default"
+    //The priority threshold for reporting bugs.
+    // If set to low, all bugs are reported.
+    // If set to medium (the default), medium and high priority bugs are reported.
+    // If set to high, only high priority bugs are reported.
+    reportLevel = "medium"
+    println( "buildDir: $project.buildDir")
+    println( "projectDir: $project.projectDir")
+    //过滤器
+    excludeFilter = new File("${project.rootDir}/code_analysis/findbug_filter.xml")
+    //这里填写项目classes目录
+    classes = fileTree("${project.buildDir}/intermediates/javac")
+    source = fileTree("${project.projectDir}/src/main/java/")
+    classpath = files()
+    reports{
+        xml.enabled = true
+        xml.setDestination(new File("${project.buildDir}/reports/findbugs/findbugs_${project.name}.xml"))
+        html.enabled = false
+        html.setDestination(new File("${project.buildDir}/reports/findbugs/findbugs_${project.name}.html"))
+    }
+
+}
