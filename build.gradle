@@ -29,23 +29,24 @@ allprojects {
     }
 }
 
-//subprojects { subProject ->
-//    plugins.withId('com.android.application') {
-//        subProject.apply from: file("${project.rootDir}/code_analysis/findbugs.gradle")
-//        subProject.apply from: file("${project.rootDir}/code_analysis/lint.gradle")
-//        subProject.apply from: file("${project.rootDir}/code_analysis/jacoco.gradle")
-//    }
-//
-//    plugins.withId('com.android.library') {https://github.com/mqzhangw/JIMU.git
-//        subProject.apply from: file("${project.rootDir}/code_analysis/findbugs.gradle")
-//        subProject.apply from: file("${project.rootDir}/code_analysis/lint.gradle")
-//        subProject.apply from: file("${project.rootDir}/code_analysis/jacoco.gradle")
-//    }
-//
-//    plugins.withId('java') {
-//        subProject.apply from: file("${project.rootDir}/code_analysis/findbugs-java.gradle")
-//    }
-//}
+//静态代码扫描相关plugins
+subprojects { subProject ->
+    plugins.withId('com.android.application') {
+        subProject.apply from: file("${project.rootDir}/code_analysis/findbugs.gradle")
+        subProject.apply from: file("${project.rootDir}/code_analysis/lint.gradle")
+        subProject.apply from: file("${project.rootDir}/code_analysis/jacoco.gradle")
+    }
+
+    plugins.withId('com.android.library') {
+        subProject.apply from: file("${project.rootDir}/code_analysis/findbugs.gradle")
+        subProject.apply from: file("${project.rootDir}/code_analysis/lint.gradle")
+        subProject.apply from: file("${project.rootDir}/code_analysis/jacoco.gradle")
+    }
+
+    plugins.withId('java') {
+        subProject.apply from: file("${project.rootDir}/code_analysis/findbugs-java.gradle")
+    }
+}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
