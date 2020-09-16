@@ -19,6 +19,8 @@ jobs:
         java-version: 1.8
     - name: Build with Gradle
       run: ./gradlew build
+    - name: static check with findbugs
+      run: ./gradlew findbugs
     - uses: actions/upload-artifact@v2      
       with:
         name: apk_artifact
