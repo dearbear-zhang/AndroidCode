@@ -21,6 +21,8 @@ jobs:
       run: ./gradlew build
     - name: static check with findbugs
       run: ./gradlew findbugs
+    - name: static check with lint
+      run: ./gradlew lint
     - uses: actions/upload-artifact@v2      
       with:
         name: apk_artifact
