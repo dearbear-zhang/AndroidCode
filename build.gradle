@@ -41,11 +41,14 @@ subprojects { subProject ->
         subProject.apply from: file("${project.rootDir}/code_analysis/findbugs.gradle")
         subProject.apply from: file("${project.rootDir}/code_analysis/lint.gradle")
         subProject.apply from: file("${project.rootDir}/code_analysis/jacoco.gradle")
+        // maven
+        subProject.apply plugin: 'maven'
     }
 
     plugins.withId('java') {
         subProject.apply from: file("${project.rootDir}/code_analysis/findbugs-java.gradle")
     }
+    
 }
 
 task clean(type: Delete) {

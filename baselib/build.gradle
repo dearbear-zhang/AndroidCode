@@ -34,3 +34,18 @@ dependencies {
     androidTestImplementation deps.androidx.android_junit
     androidTestImplementation deps.androidx.espresso_espresso_core
 }
+
+// 省略其他配置
+
+uploadArchives{
+    repositories.mavenDeployer{
+        // Ubuntu本地仓库路径， Windows 为(url:"file://D://***/***/***/")
+        repository(url: "file:/" + rootDir + "/repos")
+        // 唯一标识
+        pom.groupId = "com.my"
+        // 项目名称
+        pom.artifactId = "baselib"
+        // 版本号
+        pom.version = "1.0.0"
+    }
+}
