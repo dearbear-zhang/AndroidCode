@@ -40,7 +40,7 @@ dependencies {
 uploadArchives{
     repositories.mavenDeployer{
         // Ubuntu本地仓库路径， Windows 为(url:"file://D://***/***/***/")
-        repository(url: uri("${rootDir}/repos)"))
+        repository(url: uri("${rootDir}/repos"))
         // 唯一标识
         pom.groupId = "com.my"
         // 项目名称
