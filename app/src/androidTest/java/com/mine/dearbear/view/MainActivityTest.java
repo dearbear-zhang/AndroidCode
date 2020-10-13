@@ -1,6 +1,7 @@
 package com.mine.dearbear.view;
 
 import android.content.Context;
+
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
@@ -11,7 +12,7 @@ public class MainActivityTest {
 
     @Test
     public void onCreate() {
-        Context appContext = InstrumentationRegistry.getTargetContext();
+        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         assertEquals("com.mine.dearbear", appContext.getPackageName());
     }
