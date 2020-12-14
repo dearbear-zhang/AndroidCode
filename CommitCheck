@@ -1,0 +1,23 @@
+@Library('pipeline-mylib') _
+
+node {
+    /* Requires the Docker Pipeline plugin to be installed */
+    docker.image('mingc/android-build-box')
+		.inside('-v /opt/.gradle:/root/.gradle'){
+        stage('codeDownload') {
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github_token', url: 'https://github.com/dearbear-zhang/AndroidCode.git']]])
+        }
+        stage('build') {
+            sh './gradlew build'
+        }
+        stage('static check with findbugs') {
+            sh './gradlew findbugs'
+        }
+        stage('static check with lint') {
+            sh './gradlew lint'
+        }
+        stage('archiveArtifacts') {
+            archiveArtifacts artifacts: 'app/build/outputs/apk/**/*.apk', followSymlinks: false
+        }
+    }
+}
