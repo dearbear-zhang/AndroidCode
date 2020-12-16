@@ -19,5 +19,8 @@ node {
         stage('archiveArtifacts') {
             archiveArtifacts artifacts: 'app/build/outputs/apk/**/*.apk', followSymlinks: false
         }
+        stage("clean"){
+            sh './gradlew clean'
+        }
     }
 }
