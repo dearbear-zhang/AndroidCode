@@ -1,11 +1,30 @@
 @Library('pipeline-mylib') _
 
 node {
+    runInAndroidBuildDocker(mainStatusClosue())
+}
+
+// 运行在Android build docker环境
+def runInAndroidBuildDocker(Closure) {
     /* Requires the Docker Pipeline plugin to be installed */
     docker.image('mingc/android-build-box')
-		.inside('-v /opt/.gradle:/root/.gradle'){
+            .inside('-v /opt/.gradle:/root/.gradle') mainStatusClosue()
+}
+
+// 主流程
+def mainStatusClosue() {
+    return {
         stage('codeDownload') {
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github_token', url: 'https://github.com/dearbear-zhang/AndroidCode.git']]])
+            checkout(
+                    [$class                           : 'GitSCM',
+                     branches                         : [[name: '*/master']],
+                     doGenerateSubmoduleConfigurations: false,
+                     extensions                       : [],
+                     submoduleCfg                     : [],
+                     userRemoteConfigs                : [[credentialsId: 'github_token',
+                                                          url          : 'https://github.com/dearbear-zhang/AndroidCode.git']]
+                    ]
+            )
         }
         stage('build') {
             sh './gradlew build'
@@ -19,7 +38,7 @@ node {
         stage('archiveArtifacts') {
             archiveArtifacts artifacts: 'app/build/outputs/apk/**/*.apk', followSymlinks: false
         }
-        stage("clean"){
+        stage("clean") {
             sh './gradlew clean'
         }
     }
