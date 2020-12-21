@@ -1,2 +1,3 @@
+include ':utilcode'
 include ':toolkit'
 include ':app', ':baselib'

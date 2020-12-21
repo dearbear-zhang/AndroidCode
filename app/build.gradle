@@ -4,6 +4,7 @@
 //    apply plugin: 'com.android.library'
 //}
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion allCompileSdkVersion
@@ -101,6 +102,8 @@ dependencies {
     testImplementation deps.junit
     androidTestImplementation deps.androidx.android_junit
     androidTestImplementation deps.androidx.espresso_espresso_core
+    implementation "androidx.core:core-ktx:1.3.2"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 project.assemble.doLast {
@@ -109,4 +112,7 @@ project.assemble.doLast {
 
 project.afterEvaluate {
     println('test')
+}
+repositories {
+    mavenCentral()
 }
