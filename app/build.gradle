@@ -4,7 +4,6 @@
 //    apply plugin: 'com.android.library'
 //}
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion allCompileSdkVersion
