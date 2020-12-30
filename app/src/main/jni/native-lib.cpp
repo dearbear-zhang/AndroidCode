@@ -3,10 +3,10 @@
 //
 #include "com_mine_dearbear_utils_JniUtilTest.h"
 
-JNIEXPORT jstring JNICALL Java_com_yl_ndkdemo_MainActivity_stringFromJNI
-        (JNIEnv *env, jobject obj) {
-    jclass xx = env->GetObjectClass(obj);
+extern "C"
+JNIEXPORT jstring JNICALL Java_com_mine_dearbear_utils_JniUtilTest_stringFromJNI
+        (JNIEnv *env, jobject thiz) {
+    jclass xx = env->GetObjectClass(thiz);
     char password[10] = "dfad";
     return env->NewStringUTF("Hello from C++");
 }
-
