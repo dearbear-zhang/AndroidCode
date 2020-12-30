@@ -26,7 +26,7 @@ node {
         stage('archiveArtifacts') {
             archiveArtifacts artifacts: 'app/build/outputs/apk/**/*.apk', followSymlinks: false
         }
-        state('junit') {
+        stage('junit') {
             sh './gradlew test'
             echo 'junit report'    
             publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '**/build/reports/tests/**/index.html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
