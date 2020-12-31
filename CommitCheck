@@ -27,9 +27,10 @@ node {
             archiveArtifacts artifacts: 'app/build/outputs/apk/**/*.apk', followSymlinks: false
         }
         stage('junit') {
-            sh './gradlew test'
+            sh './gradlew testReleaseUnitTest'
             echo 'junit report'    
-            publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '**/build/reports/tests/**/index.html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+            junit '**/test-results/testReleaseUnitTest/*.xml'
+            //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '**/build/reports/tests/**/index.html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
         }
         stage("clean") {
             sh './gradlew clean'
