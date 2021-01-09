@@ -32,7 +32,7 @@ versions.logger = "1.15"
 versions.material_dialog = "0.9.6.0"
 versions.material = '1.1.0'
 versions.junit = '4.12'
-
+versions.mina_version = '2.0.13'
 
 //Arouter
 versions.arouter_compiler = "1.1.4"
@@ -129,6 +129,7 @@ deps.toasty = "com.github.GrenderG:Toasty:$versions.toasty"
 deps.logger = "com.orhanobut:logger:$versions.logger"
 deps.arouter_api = "com.alibaba:arouter-api:$versions.arouter_api"
 deps.arouter_compiler = "com.alibaba:arouter-compiler:$versions.arouter_compiler"
+deps.mina_core = "org.apache.mina:mina-core:$versions.mina_version"
 
 ext.deps = deps
 
