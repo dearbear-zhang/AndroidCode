@@ -15,7 +15,7 @@ node {
             )
         }
         stage('build') {
-            sh './gradlew build'
+            sh './gradlew build --stacktrace --info'
         }
         stage('static check with findbugs') {
             sh './gradlew findbugs'
