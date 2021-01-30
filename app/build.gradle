@@ -6,7 +6,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion allCompileSdkVersion
+    compileSdkVersion build_versions.build_tools
 
     signingConfigs {
         debug {
@@ -27,8 +27,8 @@ android {
             applicationId "com.mine.dearbear"
         }
 
-        minSdkVersion allMinSdkVersion
-        targetSdkVersion allTargetSdkVersion
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -75,6 +75,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+//    ndkVersion '21.3.6528147'
 }
 
 dependencies {

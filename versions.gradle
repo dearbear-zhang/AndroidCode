@@ -142,7 +142,7 @@ ext.debug = debug
 
 def build_versions = [:]
 build_versions.min_sdk = 16
-build_versions.target_sdk = 27
+build_versions.target_sdk = 28
 build_versions.build_tools = 29
 ext.build_versions = build_versions
 
