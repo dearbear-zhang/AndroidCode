@@ -15,8 +15,8 @@ jobs:
         java-version: 1.8
     - name: Build with Gradle
       run: ./gradlew build --stacktrace --info
-    - name: static check with findbugs
-      run: ./gradlew findbugs
+#    - name: static check with findbugs
+#      run: ./gradlew findbugs
     - name: static check with lint
       run: ./gradlew lint 
     # - uses: yutailang0119/action-android-lint@v1.0.2
