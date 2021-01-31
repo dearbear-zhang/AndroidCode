@@ -30,6 +30,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api deps.androidx.appcompat
+    api deps.brvah
     testImplementation deps.junit
     androidTestImplementation deps.androidx.android_junit
     androidTestImplementation deps.androidx.espresso_espresso_core
