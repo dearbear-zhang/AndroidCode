@@ -19,7 +19,7 @@ node {
         }
 //        stage('static check with findbugs') {
 //            sh './gradlew findbugs'
-        }
+//        }
         stage('static check with lint') {
             sh './gradlew lint'
         }
