@@ -12,7 +12,7 @@ node {
                                                           noTags   : false,
                                                           reference: '',
                                                           shallow  : true,
-                                                          timeout  : 20]],
+                                                          timeout  : 60]],
                      submoduleCfg                     : [],
                      userRemoteConfigs                : [[credentialsId: 'github_token',
                                                           url          : 'https://github.com/dearbear-zhang/AndroidCode.git']]
