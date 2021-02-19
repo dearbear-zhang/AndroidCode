@@ -7,7 +7,12 @@ node {
                     [$class                           : 'GitSCM',
                      branches                         : [[name: "*/${env.BRANCH_NAME}"]],
                      doGenerateSubmoduleConfigurations: false,
-                     extensions                       : [],
+                     extensions                       : [[$class   : 'CloneOption',
+                                                          depth    : 1,
+                                                          noTags   : false,
+                                                          reference: '',
+                                                          shallow  : true,
+                                                          timeout  : 20]],
                      submoduleCfg                     : [],
                      userRemoteConfigs                : [[credentialsId: 'github_token',
                                                           url          : 'https://github.com/dearbear-zhang/AndroidCode.git']]
@@ -28,7 +33,7 @@ node {
         }
         stage('junit') {
             sh './gradlew testReleaseUnitTest'
-            echo 'junit report'    
+            echo 'junit report'
             junit '**/test-results/testReleaseUnitTest/*.xml'
             //publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '**/build/reports/tests/**/index.html', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
         }
