@@ -9,7 +9,7 @@ node {
                      doGenerateSubmoduleConfigurations: false,
                      extensions                       : [[$class   : 'CloneOption',
                                                           depth    : 1,
-                                                          noTags   : false,
+                                                          noTags   : true,
                                                           reference: '',
                                                           shallow  : true,
                                                           timeout  : 60]],
