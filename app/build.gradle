@@ -34,7 +34,7 @@ android {
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         ndk {
-            abiFilters 'armeabi-v7a'
+            abiFilters 'armeabi-v7a', 'x86'
         }
     }
 
@@ -76,6 +76,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 //    ndkVersion '21.3.6528147'
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
