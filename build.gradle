@@ -35,6 +35,7 @@ subprojects { subProject ->
         subProject.apply from: file("${project.rootDir}/code_analysis/lint.gradle")
         subProject.apply from: file("${project.rootDir}/code_analysis/jacoco.gradle")
         subProject.apply plugin: 'kotlin-android'
+        subProject.apply plugin: "kotlin-parcelize"
     }
 
     plugins.withId('com.android.library') {
@@ -44,6 +45,7 @@ subprojects { subProject ->
         // maven
         subProject.apply plugin: 'maven'
         subProject.apply plugin: 'kotlin-android'
+        subProject.apply plugin: "kotlin-parcelize"
     }
 
     plugins.withId('java') {

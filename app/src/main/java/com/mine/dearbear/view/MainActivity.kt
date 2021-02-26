@@ -1,6 +1,7 @@
 package com.mine.dearbear.view
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Button
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.dearbear.utilcode.socket.SocketServiceHelper
+import com.example.toolkit.ui.AppInfoActivity
 import com.mine.dearbear.R
 import com.mine.dearbear.databinding.ActivityMainBinding
 import java.util.*
@@ -40,13 +42,14 @@ class MainActivity : Activity() {
         data.add("图片,音频")
 
         mItemAdapter = ItemAdapter(data)
+        mItemAdapter?.setOnItemClickListener { adapter, view, position ->
+            if (position == 1) {
+                val intent = Intent(this, AppInfoActivity::class.java)
+                startActivity(intent)
+            }
+        }
         mRecyclerView?.adapter = mItemAdapter
         mRecyclerView?.layoutManager = LinearLayoutManager(this)
-        //        mItemAdapter.notifyDataSetChanged();
-
-//        Toast.makeText(this, "集成模式启动", Toast.LENGTH_LONG).show();
-//        Intent intent = new Intent(this, ScrollingTestActivity.class);
-//        startActivity(intent);
     }
 
     private fun test() {

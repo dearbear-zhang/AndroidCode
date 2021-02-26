@@ -40,6 +40,12 @@ dependencies {
     api deps.kotlin.coroutines_android
     api deps.permissionx
 
+    // RxBinding
+    api "com.jakewharton.rxbinding2:rxbinding:$versions.rxbinding_version"
+    //第三方对话框
+    api "com.afollestad.material-dialogs:core:$versions.material_dialogs_version"
+    api "com.afollestad.material-dialogs:commons:$versions.material_dialogs_version"
+
 }
 
 // 省略其他配置

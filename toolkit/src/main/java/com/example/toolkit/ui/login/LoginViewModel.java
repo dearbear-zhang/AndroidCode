@@ -1,21 +1,21 @@
 package com.example.toolkit.ui.login;
 
+import android.util.Patterns;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.util.Patterns;
-
+import com.example.toolkit.R;
 import com.example.toolkit.data.LoginRepository;
 import com.example.toolkit.data.Result;
 import com.example.toolkit.data.model.LoggedInUser;
-import com.example.toolkit.R;
 
 public class LoginViewModel extends ViewModel {
 
-    private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
-    private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
-    private LoginRepository loginRepository;
+    final private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();
+    final private MutableLiveData<LoginResult> loginResult = new MutableLiveData<>();
+    final private LoginRepository loginRepository;
 
     LoginViewModel(LoginRepository loginRepository) {
         this.loginRepository = loginRepository;
