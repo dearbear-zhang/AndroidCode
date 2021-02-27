@@ -14,8 +14,8 @@ node {
                                                           shallow  : true,
                                                           timeout  : 30]],
                      submoduleCfg                     : [],
-                     userRemoteConfigs                : [[credentialsId: 'github_token',
-                                                          url          : 'https://github.com/dearbear-zhang/AndroidCode.git']]
+                     userRemoteConfigs                : [[credentialsId: 'jenkins_ssh',
+                                                          url          : 'git@github.com:dearbear-zhang/AndroidCode.git']]
                     ]
             )
         }
