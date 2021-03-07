@@ -44,15 +44,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     api project(':baselib')
-    api deps.androidx.appcompat
-    implementation deps.androidx.constraintlayout
     implementation deps.androidx.lifecycle_extensions
-    implementation deps.material
     implementation deps.androidx.swiperefresh
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0"
     testImplementation deps.junit

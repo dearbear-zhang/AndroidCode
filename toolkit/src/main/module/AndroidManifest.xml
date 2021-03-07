@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.toolkit">
 
-    <application>
+    <application android:theme="@style/AppTheme">
         <activity
             android:name=".ui.slide.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
@@ -21,6 +21,9 @@
         <activity
             android:name=".ui.AppInfoDetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ui.PhoneInfoActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

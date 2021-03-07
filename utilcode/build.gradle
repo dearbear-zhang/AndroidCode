@@ -27,15 +27,13 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     api project(':baselib')
-    api deps.androidx.appcompat
-    androidTestImplementation deps.androidx.android_junit
-    androidTestImplementation deps.androidx.espresso_espresso_core
-    api deps.kotlin.core_ktx
-    api deps.kotlin.stdlib
+
     // mina
     implementation deps.mina_core
     implementation deps.gson
 
+    androidTestImplementation deps.androidx.android_junit
+    androidTestImplementation deps.androidx.espresso_espresso_core
     testImplementation 'junit:junit:4.12'
 }
 repositories {

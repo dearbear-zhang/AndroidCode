@@ -83,11 +83,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api deps.androidx.appcompat
 
-    implementation deps.androidx.constraintlayout
-    implementation deps.androidx.legacy
-    implementation deps.material
     // RxAndroid
     implementation deps.rx2_android
     // RxJava2
