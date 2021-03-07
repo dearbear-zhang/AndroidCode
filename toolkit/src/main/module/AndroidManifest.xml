@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.toolkit">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application android:theme="@style/AppTheme">
         <activity
             android:name=".ui.slide.ScrollingActivity"
@@ -24,6 +25,18 @@
         <activity
             android:name=".ui.PhoneInfoActivity"
             android:theme="@style/AppTheme" />
+        <activity android:name=".ui.VvnActivity" />
+
+        <service
+            android:name=".localvpn.LocalVPNService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

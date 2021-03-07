@@ -123,4 +123,8 @@
     <string name="app_info_size">大小：%1$s</string>
     <string name="app_info_path">路径：%1$s</string>
     <string name="app_info_permission">权限：%1$s</string>
+
+    <!--    local vnn-->
+    <string name="start_vpn">Start VPN</string>
+    <string name="stop_vpn">Stop from Notification Bar</string>
 </resources>

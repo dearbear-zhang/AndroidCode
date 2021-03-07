@@ -41,12 +41,13 @@ class PhoneInfoActivity : AppCompatActivity() {
         data.add("基本信息")
         data.add("应用信息")
         data.add("图片,音频")
+        data.add("vvn")
 
         mItemAdapter = ItemAdapter(data)
         mItemAdapter?.setOnItemClickListener { adapter, view, position ->
-            if (position == 1) {
-                val intent = Intent(this, AppInfoActivity::class.java)
-                startActivity(intent)
+            when (position) {
+                1 -> startActivity(Intent(this, AppInfoActivity::class.java))
+                3 -> startActivity(Intent(this, VvnActivity::class.java))
             }
         }
         mRecyclerView?.adapter = mItemAdapter
